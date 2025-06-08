@@ -5,6 +5,12 @@ import GoogleProvider from "next-auth/providers/google";
 import User from "@/models/User";
 
 import connectDB from "@/db/connectDb";
+
+if(process.env.GITHUB_SECRET === undefined || process.env.GITHUB_SECRET === null || process.env.GITHUB_SECRET === '' ){
+
+  console.log('here is the problem env not found ');
+  
+}
 const authOptions = NextAuth({
   // Configure one or more authentication providers
   providers: [
