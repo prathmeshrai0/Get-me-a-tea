@@ -57,8 +57,8 @@
 .area {
 	background: #4e54c8;
 	background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
-	width: 100%;
-	height: 100vh;
+	/* width: 100%;
+	height: 200vh; */
 	position: absolute;
 	z-index: -1;
 }
@@ -188,4 +188,15 @@
 			@apply text-lg;
 		}
  
+}
+
+
+.no-arrow::-webkit-outer-spin-button,
+.no-arrow::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-arrow {
+  -moz-appearance: textfield;
 }

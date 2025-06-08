@@ -23,14 +23,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased   border-red-700 h-auto `}
+      // className="relative border-red-600     min-h-fit "
       >
         <SessionWrapper>
           <Navbar />
-          <div className=" relative border-red-600  max-h-[90vh] h-[90vh]    ">
-            {children}
-            <div className="area  max-h-full absolute top-0 z-[-10] ">
-              <ul className="circles ">
+
+          <div className=" relative border-red-600       h-auto     ">
+        
+
+
+
+            <div className="area min-h-screen   absolute top-0 h-full w-full ">
+              <ul className="circles  -z-[10]">
                 <li></li>
                 <li></li>
                 <li></li>
@@ -42,7 +47,11 @@ export default function RootLayout({ children }) {
                 <li></li>
                 <li></li>
               </ul>
+
+
+
             </div>
+            {children}
           </div>
 
           <Footer />

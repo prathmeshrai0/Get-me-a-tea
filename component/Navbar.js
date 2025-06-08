@@ -4,25 +4,66 @@ import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
+import { fetchUser } from "@/actions/useractions";
 
-import { redirect } from "next/dist/server/api-utils";
 const Navbar = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
-  const [LoggedIn, setLoggedIn] = useState(false);
-
   const showDropDown = useRef();
+  const inside = useRef();
+  const icon = useRef();
+  const navEle = useRef();
+  const yourPage = useRef();
   const toggleshowDropDown = () => {
     showDropDown.current.classList.toggle("hidden");
   };
+  const [yourPageAccess, setyourPageAccess] = useState(false)
+
+
+  useEffect(() => {
+    if (session) {
+      getData()
+
+    }
+
+  }, [session])
+
+  useEffect(() => {
+    if (yourPageAccess) {
+
+      yourPage.current.classList.remove("cursor-not-allowed")
+
+    }
+  }, [yourPageAccess])
+
+  const getData = async () => {
+    let u = await fetchUser(session.user.name)
+    // console.log(u);
+    if (u.razorpayID && u.razorpaySecret) {
+      setyourPageAccess(true);
+    }
+
+  }
+ 
 
   return (
-    <nav className="bg-[#020a38] text-white font-bold  flex  h-14 items-center flex-wrap px-2.5 ">
-      <Link href="/" className="logo   w-1/2 ">
-        Get Me A Tea{" "}
+    <nav
+      ref={navEle}
+      className="bg-[#020a38] text-white font-bold   flex  h-14 items-center flex-wrap px-2.5    justify-between text-sm"
+    >
+      <Link ref={icon} href="/" className="logo   sm:w-1/2   ">
+        {navEle.current && navEle.current.offsetWidth > 436 ? (
+          <p> Get Me A Tea </p>
+        ) : (
+          <lord-icon
+            src="https://cdn.lordicon.com/elcmkycs.json"
+            trigger="hover"
+            stroke="bold"
+          ></lord-icon>
+        )}
       </Link>
-      <ul className="flex    justify-end gap-9 w-1/2  flex-wrap   items-center  ">
+      <ul className="flex    justify-end sm:gap-9 gap-2.5  sm:w-1/2   flex-wrap   items-center     ">
         {!session && (
           <>
             {" "}
@@ -40,11 +81,6 @@ const Navbar = () => {
                 type="button"
                 onClick={() => {
                   toggleshowDropDown();
-                }}
-                onBlur={() => {
-                  setTimeout(() => {
-                     toggleshowDropDown()
-                  }, 150);
                 }}
               >
                 <img
@@ -69,7 +105,7 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-              <div className="absolute right-0">
+              <div className="absolute right-0" ref={inside}>
                 <div
                   id="dropdownInformation"
                   className="  hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600"
@@ -85,23 +121,45 @@ const Navbar = () => {
                     className="py-2 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownInformationButton"
                   >
-                    <li>
+                    <li onClick={toggleshowDropDown}>
                       <Link
                         href="/"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" 
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Home
                       </Link>
                     </li>
-                    <li>
+                    <li onClick={toggleshowDropDown}>
                       <Link
-                        href={"users/" + session.user.name}
+                        href={"/dashboard"}
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Dashboard
                       </Link>
                     </li>
-                    <li>
+                    <li
+                      className=" "
+                      onClick={() => {
+                        toggleshowDropDown();
+                      }}
+                    >
+                      <Link
+                        href={"/users/" + session.user.name}
+                        // href={"dashboard"}
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-not-allowed"
+                        ref={yourPage}
+                        onClick={e => {
+                          if (e.currentTarget.className.includes('cursor-not-allowed') &&  !yourPageAccess) {
+                            e.preventDefault()
+                            alert('You need to add Razorpay Id and Secret first ')
+                          }
+
+                        }}
+                      >
+                        Your Page
+                      </Link>
+                    </li>
+                    <li onClick={toggleshowDropDown}>
                       <Link
                         href="/aboutdev"
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
