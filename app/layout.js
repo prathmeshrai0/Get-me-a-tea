@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/component/Navbar";
 import Footer from "@/component/Footer";
 import SessionWrapper from "@/component/SessionWrapper";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,7 +56,8 @@ export default function RootLayout({ children }) {
           </div>
 
           <Footer />
-          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+          
+          <Script src="https://cdn.lordicon.com/lordicon.js"></Script>
         </SessionWrapper>
       </body>
     </html>
