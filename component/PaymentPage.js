@@ -157,7 +157,7 @@ const PaymentPage = ({ params }) => {
       />
       <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
 
-      <div className="h-[150vh]">
+      <div className=" ">
         <div className="w-full h-[40vh]   relative  ">
           {userData.coverPic &&
             (
@@ -202,8 +202,9 @@ const PaymentPage = ({ params }) => {
           </p>
         </div>
 
-        <div className="flex   text-md    mt-20 border-black w-auto max-w-5xl mx-auto     max-h-[50%]      sm:justify-between  justify-around flex-col-reverse  sm:flex-row  sm:gap-0 gap-5 ">
-          <div className="supporters   p-5 rounded-lg transition duration-300   hover:outline-2  outline-blue-400 hover:shadow-[0_0_15px_3px_rgba(59,130,246,0.5)]  overflow-hidden md:w-[40%] sm:w-1/2  border-blue-400 pointer-fine:border-none   ">
+        <div className="flex   text-md    mt-20 border-black w-auto max-w-5xl mx-auto     max-h-[50%]      sm:justify-between  justify-around flex-col-reverse  sm:flex-row  sm:gap-0 gap-5   ">
+          <div className="supporters   p-5 rounded-lg transition duration-300   hover:outline-2  outline-blue-400 hover:shadow-[0_0_15px_3px_rgba(59,130,246,0.5)]  overflow-hidden md:w-[40%] sm:w-1/2  border-blue-400  mb-20     ">
+          {/* pointer-fine:border-none  */}
             <h2 className="font-bold mb-3.5">Supporters</h2>
 
             <ul className="flex gap-2.5 flex-col" ref={supporter}>

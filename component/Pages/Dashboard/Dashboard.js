@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Dashboard = () => {
   const { data: session, update } = useSession();
-  // console.log(session);
+ 
 
   const [formData, setformData] = useState({
     email: "",
@@ -39,10 +39,7 @@ const Dashboard = () => {
       ...u,
     }));
   };
- useEffect(() => {
- console.log(  formData);
  
- }, [formData])
  
   
   const handleSubmit = async e => {
