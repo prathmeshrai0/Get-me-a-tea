@@ -28,7 +28,7 @@ const Login = () => {
             <div className="   w-3/4 mx-auto flex flex-col items-center  gap-3  text-center  ">
               <h1 className="my-title">Login here </h1>
               <div className="my-desc-s">
-                Login to get you only fans, trusted !
+                Login to get your fans, trusted !
               </div>
               <div className="flex flex-col gap-2     p-10">
                 <button
