@@ -112,6 +112,7 @@ Deployed the application on Vercel and connected it with MongoDB Atlas for cloud
 </details>
 <details>
 <summary>Razorpay Payment Flow</summary>
+
 ## 1. User Clicks "Pay"
 
 Frontend sends donation details:
