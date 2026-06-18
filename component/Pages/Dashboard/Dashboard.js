@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react";
 import { updateProfile, fetchUser } from "@/actions/useractions";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   const { data: session, update } = useSession();
- 
+  const router = useRouter();
 
   const [formData, setformData] = useState({
     email: "",
@@ -26,12 +27,6 @@ const Dashboard = () => {
 
   const getData = async () => {
     let u = await fetchUser(session.user.name);
-    if (u.profilePic.length == 0) {
-      
-
-    }
-    // console.log(u.profilePic.length == 0);
-
 
     setformData(prev => ({
       ...prev,
@@ -39,9 +34,7 @@ const Dashboard = () => {
       ...u,
     }));
   };
- 
- 
-  
+
   const handleSubmit = async e => {
     if (
       formData.razorpayID.length < 15 ||
@@ -62,7 +55,7 @@ const Dashboard = () => {
       progress: undefined,
       theme: "light",
     });
-    update();
+    await update();
   };
 
   useEffect(() => {
@@ -134,7 +127,6 @@ const Dashboard = () => {
               id="profilePic"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
-
               value={formData.profilePic || ""}
               onChange={handleFormData}
             />
@@ -152,7 +144,6 @@ const Dashboard = () => {
               id="coverPic"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
-
               value={formData.coverPic || ""}
               onChange={handleFormData}
             />
@@ -172,7 +163,6 @@ const Dashboard = () => {
               id="phoneNo"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
-
               value={formData.phoneNo || ""}
               onChange={handleFormData}
             />

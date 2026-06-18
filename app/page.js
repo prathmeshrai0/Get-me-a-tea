@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <div className="  text-white font-mono ">
+  <div className="  text-white font-mono ">
         <div  >
           <Hero />
           <div className="h-[1px] bg-white"></div>

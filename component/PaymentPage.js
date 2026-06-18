@@ -33,6 +33,8 @@ const PaymentPage = ({ params }) => {
   };
 
   const pay = async amount => {
+
+    // console.log(userData)
     let a = await initiate(amount, userData.username, payment_form);
     let order_id = a.id;
 
@@ -271,9 +273,8 @@ const PaymentPage = ({ params }) => {
                   Pay
                 </button>
               </div>
-              {/* pay with coins  */}
               <div className="flex   items-center">
-                <h4>Or pay with coins</h4>
+                <h4>Or pay with change</h4>
                 <lord-icon
                   src="https://cdn.lordicon.com/kkdnopsh.json"
                   trigger="hover"
@@ -283,34 +284,34 @@ const PaymentPage = ({ params }) => {
                 <button
                   className="text-white bg-gradient-to-br from-purple-600 cursor-pointer to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium  text-sm p-2 w-11  rounded-lg disabled:from-black   disabled:cursor-not-allowed"
                   onClick={() => {
-                    pay(100);
-                  }} disabled={payment_form.name.length < 3 || payment_form.message.length < 4}
-                >
-                  ₹1
-                </button>{" "}
-                <button
-                  className="text-white bg-gradient-to-br from-purple-600 cursor-pointer to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium  text-sm p-2 w-11  rounded-lg disabled:from-black   disabled:cursor-not-allowed"
-                  onClick={() => {
-                    pay(200);
-                  }} disabled={payment_form.name.length < 3 || payment_form.message.length < 4}
-                >
-                  ₹2
-                </button>{" "}
-                <button
-                  className="text-white bg-gradient-to-br from-purple-600 cursor-pointer to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium  text-sm p-2 w-11  rounded-lg disabled:from-black   disabled:cursor-not-allowed"
-                  onClick={() => {
-                    pay(500);
-                  }} disabled={payment_form.name.length < 3 || payment_form.message.length < 4}
-                >
-                  ₹5
-                </button>
-                <button
-                  className="text-white bg-gradient-to-br from-purple-600 cursor-pointer to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium  text-sm p-2 w-11  rounded-lg   disabled:from-black   disabled:cursor-not-allowed"
-                  onClick={() => {
                     pay(1000);
                   }} disabled={payment_form.name.length < 3 || payment_form.message.length < 4}
                 >
                   ₹10
+                </button>{" "}
+                <button
+                  className="text-white bg-gradient-to-br from-purple-600 cursor-pointer to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium  text-sm p-2 w-11  rounded-lg disabled:from-black   disabled:cursor-not-allowed"
+                  onClick={() => {
+                    pay(2000);
+                  }} disabled={payment_form.name.length < 3 || payment_form.message.length < 4}
+                >
+                  ₹20
+                </button>{" "}
+                <button
+                  className="text-white bg-gradient-to-br from-purple-600 cursor-pointer to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium  text-sm p-2 w-11  rounded-lg disabled:from-black   disabled:cursor-not-allowed"
+                  onClick={() => {
+                    pay(5000);
+                  }} disabled={payment_form.name.length < 3 || payment_form.message.length < 4}
+                >
+                  ₹50
+                </button>
+                <button
+                  className="text-white bg-gradient-to-br from-purple-600 cursor-pointer to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium  text-sm p-2 w-11  rounded-lg   disabled:from-black   disabled:cursor-not-allowed"
+                  onClick={() => {
+                    pay(10000);
+                  }} disabled={payment_form.name.length < 3 || payment_form.message.length < 4}
+                >
+                  ₹100  
                 </button>
               </div>
             </div>
