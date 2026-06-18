@@ -34,7 +34,6 @@ const PaymentPage = ({ params }) => {
 
   const pay = async amount => {
 
-    // console.log(userData)
     let a = await initiate(amount, userData.username, payment_form);
     let order_id = a.id;
 
